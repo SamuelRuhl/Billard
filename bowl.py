@@ -4,17 +4,15 @@ import color
 
 import draw
 
+#Funktion die Reibungsverluste verrechnet
 def reibung(v):
-#    if v >= 0 and (v * 0.99995 <= 0):
-#        v = 0
-#    if v <= 0 and (v * 0.99995 >= 0):
-#        v = 0
     if v > 0:
         v *= 0.995
     if v < 0:
         v *= 0.995
     return v
 
+#Klasse zum Verhalten und Datstellen von Kugeln
 class kugel:
     def __init__(self, x, y, v_x, v_y, r,farbe,num):
         self.x = x
@@ -25,7 +23,7 @@ class kugel:
         self.farbe = farbe
         self.num = num
         
-    
+    #getter und setter
     def get_x(self):
 
         return self.x
@@ -62,6 +60,7 @@ class kugel:
 
         self.v_y = v_y
 
+    #Zeichnet Kugeln
     def draw_kugel(self):
         draw.set_pen_color(self.farbe)
         draw.filled_circle(self.x, self.y, self.r)
@@ -75,6 +74,7 @@ class kugel:
             draw.set_pen_color(color.BLACK)
             draw.text(self.x,self.y,str(self.num))
     
+    #bewegt die kugeln, abhängig von dem Geschwindigkeitsverktor
     def move(self):
         self.x = self.x + self.v_x
         self.y = self.y + self.v_y
@@ -98,11 +98,13 @@ class kugel:
             if ((self.y - (self.r * (1000/600))) < 0.25):
                 self.y -= (self.y - self.r * (1000/600) - 0.25) * 2
                            
-            
+    
+    #bewegt die Kugel zu der Position x,y        
     def move_to(self,x,y):
         self.v_x = (x - self.x) * 0.05
         self.v_y = (y - self.y) *0.05
-        
+    
+    #Berechnet Geschwindigkeiten nach Stoß
     def kollision(self,other):
         dx = other.x - self.x
         dy = other.y - self.y

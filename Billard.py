@@ -28,10 +28,9 @@ def kollision_check(k1,k2):
 
 
 def main():
+    
+    #Inizialiesierung
     pygame.init()
-
-    width = 700
-    highth = 500
 
     pygame.mouse.set_visible(1)
 
@@ -45,8 +44,10 @@ def main():
 
     running = True
 
+    #BandenBreite
     c_bande = 0.02
     c_bande_2 = c_bande * 1000 / 600
+
 
     # Halb = 1 , Voll = 0
     #Init Kugeln
@@ -56,12 +57,17 @@ def main():
     k.append(bowl.kugel(0.35,0.5,0,0,c_bande * 0.5,color.YELLOW,1))
     
     k.append(bowl.kugel(0.34,0.5,0,0,c_bande * 0.5,color.BLUE,9))
-
+    
+    #while rutine
     while running:
+        
+        #Takt
         clock.tick(100000000)
 
+        #resetet die anzeige
         draw.clear()
-
+         
+        #Zeichnet spieltisch
         tisch.tisch()
         
         
@@ -69,6 +75,7 @@ def main():
         if draw.mouse_pressed() :
             x,y = draw.mouse_position()
             k[0].move_to(x,y)
+
 
         #Bewegungen durchführen und zeichnen
         for kugel_1 in k:
@@ -81,13 +88,10 @@ def main():
             for kugel_2 in k_tmp:
                 if kollision_check(kugel_1,kugel_2):
                     kugel_1.kollision(kugel_2)
-        
-        
-        
-        
+        #zeichnet Objekte
         draw.show(1)
 
-
+        #Schließt Fenster mit Escape
         for event in pygame.event.get():
 
             if event.type == pygame.QUIT:
@@ -101,5 +105,6 @@ def main():
     pygame.display.flip()
 
 
+#Aufruf der Maint-Funktion
 main()
 

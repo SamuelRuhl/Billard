@@ -1,13 +1,8 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Mon Mar 12 16:07:11 2018
-
-@author: Xram
-"""
 
 import draw
 import color
 
+#Konstruiert einen Spieltisch
 c_bande = 0.02
 c_bande_2 = c_bande * 1000 / 600
 
