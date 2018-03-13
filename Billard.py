@@ -51,14 +51,14 @@ def main():
     # Halb = 1 , Voll = 0
     #Init Kugeln
     k = []
-    k.append(bowl.kugel(0.7, 0.5, 0, 0, c_bande * 0.5,color.WHITE,0))
+    k.append(bowl.kugel(0.7, 0.5, 0,0, c_bande * 0.5,color.WHITE,0))
     
     k.append(bowl.kugel(0.35,0.5,0,0,c_bande * 0.5,color.YELLOW,1))
     
     k.append(bowl.kugel(0.34,0.5,0,0,c_bande * 0.5,color.BLUE,9))
 
     while running:
-        clock.tick(1000)
+        clock.tick(100000000)
 
         draw.clear()
 

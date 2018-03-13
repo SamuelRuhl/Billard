@@ -89,14 +89,14 @@ class kugel:
             if (self.x + self.r) > 0.8:
                 self.x -= ((self.x + self.r) - 0.8) * 2
             if (self.x - self.r) < 0.2:
-                self.x += ((self.x + self.r) - 0.2) * 2
+                self.x -= ((self.x - self.r) - 0.2) * 2
 
         if ((self.y + (self.r * (1000/600))) >= 0.75) or ((self.y - (self.r * (1000/600))) <= 0.25):
             self.v_y = -self.v_y
             if ((self.y + (self.r * (1000/600))) > 0.75):
-                self.y -= ((self.y + self.r * (1000/600)) - 0.75 ) * 2
+                self.y -= ((self.y + self.r * (1000/600)) - 0.75 ) * 2 
             if ((self.y - (self.r * (1000/600))) < 0.25):
-                self.y += (self.y + self.r * (1000/600) - 0.25) * 2
+                self.y -= (self.y - self.r * (1000/600) - 0.25) * 2
                            
             
     def move_to(self,x,y):
