@@ -8,7 +8,7 @@ import bowl
 
 import tisch
 
-def kollisions_check(k1,k2):
+def kollision_check(k1,k2):
     dx = k2.x - k1.x
     dy = k2.y - k1.y
     dist = (dx ** 2 + dy ** 2) ** 0.5
@@ -43,9 +43,13 @@ def main():
     c_bande_2 = c_bande * 1000 / 600
 
     # Halb = 1 , Voll = 0
-    k_white = bowl.kugel(0.7, 0.5, 0, 0, c_bande * 0.5,color.WHITE,0)
+    #Init Kugeln
+    k = []
+    k.append(bowl.kugel(0.7, 0.5, 0, 0, c_bande * 0.5,color.WHITE,0))
     
-    k_black = bowl.kugel(0.35,0.5,0,0,c_bande * 0.5,color.YELLOW,1)
+    k.append(bowl.kugel(0.35,0.5,0,0,c_bande * 0.5,color.YELLOW,1))
+    
+    k.append(bowl.kugel(0.34,0.5,0,0,c_bande * 0.5,color.BLUE,9))
 
     while running:
         clock.tick(1000)
@@ -58,19 +62,18 @@ def main():
         #Bewegungn zeichnen
         if draw.mouse_pressed() :
             x,y = draw.mouse_position()
-            k_white.move_to(x,y)
+            k[0].move_to(x,y)
 
-        k_white.draw_kugel()
-        k_black.draw_kugel()
-
-        k_white.move()
-        k_black.move()
-         
-        #Kollision
-        if kollisions_check(k_white,k_black):
-            k_white.kollision(k_black)
-        
-        
+        for kugel_1 in k:
+            #Zeichnen
+            kugel_1.move()
+            kugel_1.draw_kugel()
+            #Kollision
+            k_tmp = k.copy()
+            k_tmp.remove(kugel_1) 
+            for kugel_2 in k_tmp:
+                if kollision_check(kugel_1,kugel_2):
+                    kugel_1.kollision(kugel_2)
         
         
         
