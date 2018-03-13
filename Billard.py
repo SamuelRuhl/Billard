@@ -8,14 +8,23 @@ import bowl
 
 import tisch
 
+
+#Überprüft ob eine Kollision stattgefunden hat.
+#und setzt die Kugeln falls sie verhackt sind zurück
 def kollision_check(k1,k2):
     dx = k2.x - k1.x
     dy = k2.y - k1.y
     dist = (dx ** 2 + dy ** 2) ** 0.5
+    #Enthacken
+    if dist < (k1.r + k2.r) :       
+        k1.x = k1.x + (k1.r-dist/2)
+        k1.y = k1.y + (k1.r-dist/2)
+    #Überprüfe Kollision
     if dist <= (k1.r + k2.r) :
         return True
     else : 
         return False
+    
 
 
 def main():
@@ -23,9 +32,6 @@ def main():
 
     width = 700
     highth = 500
-
-
-    #screen = pygame.display.set_mode((1200, 1200))
 
     pygame.mouse.set_visible(1)
 
@@ -59,11 +65,12 @@ def main():
         tisch.tisch()
         
         
-        #Bewegungn zeichnen
+        #Mausaktion auslesen
         if draw.mouse_pressed() :
             x,y = draw.mouse_position()
             k[0].move_to(x,y)
 
+        #Bewegungen durchführen und zeichnen
         for kugel_1 in k:
             #Zeichnen
             kugel_1.move()
@@ -93,28 +100,6 @@ def main():
 
     pygame.display.flip()
 
+
 main()
 
-def test():
-
-    running = True
-
-    while running:
-
-        draw.set_canvas_size(800, 800)
-
-        #draw.show(10000)
-
-        draw.clear()
-
-        #draw.set_pen_radius(1)
-
-        draw.set_pen_color(color.RED)
-
-        draw.filled_rectangle(0, 0, 1, 1)
-
-        pygame.display.flip()
-
-        draw.show(10000)
-
-#test()

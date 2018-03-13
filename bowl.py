@@ -81,12 +81,23 @@ class kugel:
 
         self.v_x = reibung(self.v_x)
         self.v_y = reibung(self.v_y)
-
+        #Rfelektiert die Kugel and der Bande, falls die Kugel zwiwschen einem Frame
+        #in die Bande geraten ist, dann wird sie die doppelte Eindringtiefe in entgegesengesetze
+        #richtung gesetzt.
         if (self.x + self.r) >= 0.8 or (self.x - self.r) <= 0.2:
             self.v_x = -self.v_x
+            if (self.x + self.r) > 0.8:
+                self.x -= ((self.x + self.r) - 0.8) * 2
+            if (self.x - self.r) < 0.2:
+                self.x += ((self.x + self.r) - 0.2) * 2
 
         if ((self.y + (self.r * (1000/600))) >= 0.75) or ((self.y - (self.r * (1000/600))) <= 0.25):
             self.v_y = -self.v_y
+            if ((self.y + (self.r * (1000/600))) > 0.75):
+                self.y -= ((self.y + self.r * (1000/600)) - 0.75 ) * 2
+            if ((self.y - (self.r * (1000/600))) < 0.25):
+                self.y += (self.y + self.r * (1000/600) - 0.25) * 2
+                           
             
     def move_to(self,x,y):
         self.v_x = (x - self.x) * 0.05
