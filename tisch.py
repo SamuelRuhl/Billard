@@ -89,3 +89,8 @@ def tisch():
     draw.filled_raute(0.65, 0.75 + (c_bande_2/2), c_bande/2)
 
     draw.filled_raute(0.725, 0.75 + (c_bande_2/2), c_bande/2)
+    
+    #Spieler angaben
+    draw.set_pen_color(color.BLACK)
+    draw.text(0.1,0.75,"Spieler 1 eingelocht :")
+    draw.text(0.9,0.75,"Spieler 2 eingelocht :")
